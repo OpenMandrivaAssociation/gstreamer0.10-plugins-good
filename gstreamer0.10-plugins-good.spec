@@ -1,5 +1,5 @@
-%define version 0.10.5
-%define release %mkrel 3
+%define version 0.10.6
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,7 +13,6 @@ Release: 	%release
 License: 	LGPL
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-Patch: gst-plugins-good-0.10.5-flac-1.1.3.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -38,6 +37,7 @@ BuildRequires: libGConf2-devel
 BuildRequires: libcdio-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
+Conflicts: gstreamer0.10-plugins-bad < 0.10.5
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -55,14 +55,13 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch -p1 -b .flac
-autoconf
 
 %build
 %configure2_5x --disable-dependency-tracking  
 
-#%check
-#cd tests/check
+%check
+cd tests/check
+#gw wavpackenc fails
 #make check
 
 %install
@@ -108,6 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstefence.so
 %_libdir/gstreamer-%majorminor/libgsteffectv.so
 %_libdir/gstreamer-%majorminor/libgstflxdec.so
+%_libdir/gstreamer-%majorminor/libgstgamma.so
 %_libdir/gstreamer-%majorminor/libgstgconfelements.so
 %_libdir/gstreamer-%majorminor/libgstgdkpixbuf.so
 %_libdir/gstreamer-%majorminor/libgstgoom.so
@@ -122,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstnavigationtest.so
 %_libdir/gstreamer-%majorminor/libgstossaudio.so
 %_libdir/gstreamer-%majorminor/libgstpng.so
+%_libdir/gstreamer-%majorminor/libgstqtdemux.so
 %_libdir/gstreamer-%majorminor/libgstrtp.so
 %_libdir/gstreamer-%majorminor/libgstrtsp.so
 %_libdir/gstreamer-%majorminor/libgstshout2.so
@@ -130,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstudp.so
 %_libdir/gstreamer-%majorminor/libgstvideobalance.so
 %_libdir/gstreamer-%majorminor/libgstvideobox.so
+%_libdir/gstreamer-%majorminor/libgstvideocrop.so
 %_libdir/gstreamer-%majorminor/libgstvideoflip.so
 %_libdir/gstreamer-%majorminor/libgstvideomixer.so
 %_libdir/gstreamer-%majorminor/libgstwavenc.so
@@ -239,4 +241,17 @@ Plugin for viewing movies in Ascii-art using caca library.
 %defattr(-, root, root)
 %_libdir/gstreamer-%majorminor/libgstcacasink.so
 
+
+%package -n %bname-wavpack
+Summary: Gstreamer plugin for encoding and decoding WavPack audio files
+Group: Sound
+Requires: %bname-plugins = %{version}
+BuildRequires: libwavpack-devel
+
+%description -n %bname-wavpack
+Plug-Ins for creating and playing WavPack audio files.
+
+%files -n %bname-wavpack
+%defattr(-, root, root)
+%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 
