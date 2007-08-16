@@ -1,5 +1,5 @@
 %define version 0.10.6
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -57,7 +57,7 @@ elements.
 %setup -q -n gst-plugins-good-%{version}
 
 %build
-%configure2_5x --disable-dependency-tracking  
+%configure2_5x --disable-dependency-tracking   --enable-experimental
 
 %check
 cd tests/check
@@ -117,6 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstjpeg.so
 %_libdir/gstreamer-%majorminor/libgstlevel.so
 %_libdir/gstreamer-%majorminor/libgstmatroska.so
+%_libdir/gstreamer-%majorminor/libgstmonoscope.so
 %_libdir/gstreamer-%majorminor/libgstmulaw.so
 %_libdir/gstreamer-%majorminor/libgstmultipart.so
 %_libdir/gstreamer-%majorminor/libgstnavigationtest.so
@@ -129,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstsmpte.so
 %_libdir/gstreamer-%majorminor/libgsttaglib.so
 %_libdir/gstreamer-%majorminor/libgstudp.so
+%_libdir/gstreamer-%majorminor/libgstvideo4linux2.so
 %_libdir/gstreamer-%majorminor/libgstvideobalance.so
 %_libdir/gstreamer-%majorminor/libgstvideobox.so
 %_libdir/gstreamer-%majorminor/libgstvideocrop.so
