@@ -75,6 +75,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
+#blino remove development doc since we don't ship devel files
+rm -rf $RPM_BUILD_ROOT%{_docdir}/docs/plugins/html
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f gst-plugins-good-%majorminor.lang
 %defattr(-, root, root)
-%doc AUTHORS COPYING README NEWS docs/plugins/html
+%doc AUTHORS COPYING README NEWS
 %_sysconfdir/gconf/schemas/gstreamer-%majorminor.schemas
 %_libdir/gstreamer-%majorminor/libgstalaw.so
 %_libdir/gstreamer-%majorminor/libgstannodex.so
