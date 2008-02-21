@@ -1,5 +1,5 @@
-%define version 0.10.6
-%define release %mkrel 4
+%define version 0.10.7
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -108,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstdebug.so
 %_libdir/gstreamer-%majorminor/libgstefence.so
 %_libdir/gstreamer-%majorminor/libgsteffectv.so
+%_libdir/gstreamer-%majorminor/libgstequalizer.so
 %_libdir/gstreamer-%majorminor/libgstflxdec.so
 %_libdir/gstreamer-%majorminor/libgstgamma.so
 %_libdir/gstreamer-%majorminor/libgstgconfelements.so
@@ -121,6 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstmatroska.so
 %_libdir/gstreamer-%majorminor/libgstmonoscope.so
 %_libdir/gstreamer-%majorminor/libgstmulaw.so
+%_libdir/gstreamer-%majorminor/libgstmultifile.so
 %_libdir/gstreamer-%majorminor/libgstmultipart.so
 %_libdir/gstreamer-%majorminor/libgstnavigationtest.so
 %_libdir/gstreamer-%majorminor/libgstossaudio.so
@@ -130,6 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstrtsp.so
 %_libdir/gstreamer-%majorminor/libgstshout2.so
 %_libdir/gstreamer-%majorminor/libgstsmpte.so
+%_libdir/gstreamer-%majorminor/libgstspectrum.so
 %_libdir/gstreamer-%majorminor/libgsttaglib.so
 %_libdir/gstreamer-%majorminor/libgstudp.so
 %_libdir/gstreamer-%majorminor/libgstvideo4linux2.so
