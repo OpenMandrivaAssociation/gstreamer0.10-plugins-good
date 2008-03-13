@@ -1,5 +1,5 @@
 %define version 0.10.7
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -58,7 +58,10 @@ elements.
 %setup -q -n gst-plugins-good-%{version}
 
 %build
-%configure2_5x --disable-dependency-tracking   --enable-experimental
+%configure2_5x  \
+  --with-package-name='Mandriva %name package' \
+  --with-package-origin='http://www.mandriva.com/' \
+  --disable-dependency-tracking   --enable-experimental
 
 %check
 cd tests/check
