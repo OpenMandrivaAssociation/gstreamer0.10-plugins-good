@@ -1,5 +1,5 @@
 %define version 0.10.7
-%define release %mkrel 3
+%define release %mkrel 4
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,6 +13,7 @@ Release: 	%release
 License: 	LGPL
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
+Patch: gstreamer-plugins-good-0.10.6-CVE-2008-1696.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -56,6 +57,7 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
+%patch -p1 -b .cve-2008-1686
 
 %build
 %configure2_5x  \
