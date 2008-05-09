@@ -1,5 +1,5 @@
 %define version 0.10.8
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,6 +13,9 @@ Release: 	%release
 License: 	LGPL
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
+#gw fix for http://bugzilla.gnome.org/show_bug.cgi?id=532295
+# (gst-plugins-good gconf setting default audio sink to video default visualizer)
+Patch: gst-plugins-good-0.10.8-fix-default-audiosink.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -57,6 +60,10 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
+%patch -p1
+aclocal -I m4 -I common/m4
+autoconf
+automake
 
 %build
 %configure2_5x  \
