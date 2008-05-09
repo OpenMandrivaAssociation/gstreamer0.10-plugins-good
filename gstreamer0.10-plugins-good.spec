@@ -1,5 +1,5 @@
-%define version 0.10.7
-%define release %mkrel 4
+%define version 0.10.8
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,7 +13,6 @@ Release: 	%release
 License: 	LGPL
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-Patch: gstreamer-plugins-good-0.10.6-CVE-2008-1696.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -55,9 +54,9 @@ for the plug-in code, LGPL or LGPL-compatible for the supporting
 library). People writing elements should base their code on these
 elements.
 
+
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch -p1 -b .cve-2008-1686
 
 %build
 %configure2_5x  \
@@ -120,6 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstgconfelements.so
 %_libdir/gstreamer-%majorminor/libgstgdkpixbuf.so
 %_libdir/gstreamer-%majorminor/libgstgoom.so
+%_libdir/gstreamer-%majorminor/libgstgoom2k1.so
 %_libdir/gstreamer-%majorminor/libgsthalelements.so
 %_libdir/gstreamer-%majorminor/libgsticydemux.so
 %_libdir/gstreamer-%majorminor/libgstid3demux.so
@@ -150,6 +150,19 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstwavenc.so
 %_libdir/gstreamer-%majorminor/libgstwavparse.so
 %_libdir/gstreamer-%majorminor/libgstximagesrc.so
+
+%package -n %bname-soup
+Summary:  GStreamer HTTP plugin based on libsoup
+Group:    System/Libraries
+Requires: %bname-plugins = %{version}
+BuildRequires: libsoup-devel >= 2.3
+
+%description -n %bname-soup
+Plug-in for HTTP access based on libsoup.
+
+%files -n %bname-soup
+%defattr(-, root, root)
+%_libdir/gstreamer-%majorminor/libgstsouphttpsrc.so
 
 ### LIBDV ###
 %package -n %bname-dv
