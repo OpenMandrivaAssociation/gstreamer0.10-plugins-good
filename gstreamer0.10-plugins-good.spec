@@ -10,7 +10,7 @@ Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
 Version: 	%version
 Release: 	%release
-License: 	LGPL
+License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
 #gw fix for http://bugzilla.gnome.org/show_bug.cgi?id=532295
