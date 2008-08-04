@@ -1,5 +1,5 @@
-%define version 0.10.8
-%define release %mkrel 3
+%define version 0.10.9
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,9 +13,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-#gw fix for http://bugzilla.gnome.org/show_bug.cgi?id=532295
-# (gst-plugins-good gconf setting default audio sink to video default visualizer)
-Patch: gst-plugins-good-0.10.8-fix-default-audiosink.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -41,7 +38,7 @@ BuildRequires: libcdio-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
 # some plugins moved from bad to good with release 0.10.7
-Conflicts: gstreamer0.10-plugins-bad < 0.10.6
+Conflicts: gstreamer0.10-plugins-bad < 0.10.8
 # gw this is the default http source:
 Suggests: %bname-soup
 
@@ -62,10 +59,6 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch -p1
-aclocal -I m4 -I common/m4
-autoconf
-automake
 
 %build
 %configure2_5x  \
@@ -76,7 +69,7 @@ automake
 %check
 cd tests/check
 #gw wavpackenc fails
-#make check
+make check
 
 %install
 rm -rf %buildroot gst-plugins-base-%majorminor.lang
@@ -132,6 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgsthalelements.so
 %_libdir/gstreamer-%majorminor/libgsticydemux.so
 %_libdir/gstreamer-%majorminor/libgstid3demux.so
+%_libdir/gstreamer-%majorminor/libgstinterleave.so
 %_libdir/gstreamer-%majorminor/libgstjpeg.so
 %_libdir/gstreamer-%majorminor/libgstlevel.so
 %_libdir/gstreamer-%majorminor/libgstmatroska.so
@@ -143,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstossaudio.so
 %_libdir/gstreamer-%majorminor/libgstpng.so
 %_libdir/gstreamer-%majorminor/libgstqtdemux.so
+%_libdir/gstreamer-%majorminor/libgstreplaygain.so
 %_libdir/gstreamer-%majorminor/libgstrtp.so
 %_libdir/gstreamer-%majorminor/libgstrtsp.so
 %_libdir/gstreamer-%majorminor/libgstshout2.so
@@ -172,6 +167,21 @@ Plug-in for HTTP access based on libsoup.
 %files -n %bname-soup
 %defattr(-, root, root)
 %_libdir/gstreamer-%majorminor/libgstsouphttpsrc.so
+
+%package -n %bname-pulse
+Summary: Pulseaudio plugin for GStreamer
+Group: Sound
+Requires:      %bname-plugins >= %{version}
+BuildRequires: libpulseaudio-devel >= 0.9.7
+Requires: pulseaudio >= 0.9.7
+
+%description -n %bname-pulse
+This is a GStreamer audio output plugin using the Pulseaudio sound server.
+
+%files -n %bname-pulse
+%defattr(-, root, root)
+%{_libdir}/gstreamer-%{majorminor}/libgstpulse.so
+
 
 ### LIBDV ###
 %package -n %bname-dv
