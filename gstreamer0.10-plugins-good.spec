@@ -68,7 +68,6 @@ elements.
 
 %check
 cd tests/check
-#gw wavpackenc fails
 make check
 
 %install
