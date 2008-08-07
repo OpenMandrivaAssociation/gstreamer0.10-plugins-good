@@ -1,5 +1,5 @@
 %define version 0.10.9
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,6 +13,8 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
+# (fc) 0.10.9-3mdv ensure translated strings are in UTF-8
+Patch0:		gst-plugins-good-0.10.9-utf8.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -59,6 +61,7 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
+%patch0 -p1 -b .utf8
 
 %build
 %configure2_5x  \
