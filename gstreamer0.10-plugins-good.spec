@@ -1,5 +1,5 @@
 %define version 0.10.10
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -15,6 +15,8 @@ Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
 # (fc) 0.10.9-3mdv ensure translated strings are in UTF-8
 Patch0:		gst-plugins-good-0.10.9-utf8.patch
+# (hk) libv4l support, needed by gspcav2 on linux 2.6.27
+Patch1:		gst-plugins-good-0.10.10-libv4l2.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -26,6 +28,7 @@ BuildRequires: liboil-devel >= 0.3.2
 BuildRequires: libvorbis-devel >= 1.0-4mdk
 BuildRequires: libtheora-devel
 BuildRequires: libshout-devel
+BuildRequires: libv4l-devel
 BuildRequires: taglib-devel
 BuildRequires: hal-devel >= 0.5.6
 %ifarch %ix86
@@ -61,8 +64,10 @@ elements.
 %prep
 %setup -q -n gst-plugins-good-%{version}
 %patch0 -p1 -b .utf8
+%patch1 -p0 -b .libv4l2
 
 %build
+./autogen.sh
 %configure2_5x  \
   --with-package-name='Mandriva %name package' \
   --with-package-origin='http://www.mandriva.com/' \
