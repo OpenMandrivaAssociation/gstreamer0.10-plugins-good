@@ -1,5 +1,5 @@
-%define version 0.10.9
-%define release %mkrel 3
+%define version 0.10.10
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -36,7 +36,6 @@ BuildRequires: libgstreamer-plugins-base-devel >= 0.10.9
 BuildRequires: gstreamer0.10-plugins-base
 BuildRequires: libmesaglu-devel
 BuildRequires: libGConf2-devel
-BuildRequires: libcdio-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
 # some plugins moved from bad to good with release 0.10.7
@@ -112,7 +111,6 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstautodetect.so
 %_libdir/gstreamer-%majorminor/libgstavi.so
 %_libdir/gstreamer-%majorminor/libgstcairo.so
-%_libdir/gstreamer-%majorminor/libgstcdio.so
 %_libdir/gstreamer-%majorminor/libgstcutter.so
 %_libdir/gstreamer-%majorminor/libgstdebug.so
 %_libdir/gstreamer-%majorminor/libgstefence.so
