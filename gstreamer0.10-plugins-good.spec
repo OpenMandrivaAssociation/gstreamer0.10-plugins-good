@@ -29,6 +29,7 @@ BuildRequires: libvorbis-devel >= 1.0-4mdk
 BuildRequires: libtheora-devel
 BuildRequires: libshout-devel
 BuildRequires: libv4l-devel
+BuildRequires: gettext-devel
 BuildRequires: taglib-devel
 BuildRequires: hal-devel >= 0.5.6
 %ifarch %ix86
