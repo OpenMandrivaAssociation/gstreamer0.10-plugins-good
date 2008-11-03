@@ -1,5 +1,5 @@
-%define version 0.10.10
-%define release %mkrel 3
+%define version 0.10.11
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -13,10 +13,8 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-# (fc) 0.10.9-3mdv ensure translated strings are in UTF-8
-Patch0:		gst-plugins-good-0.10.9-utf8.patch
 # (hk) libv4l support, needed by gspcav2 on linux 2.6.27
-Patch1:		gst-plugins-good-0.10.10-libv4l2.patch
+Patch1:		gst-plugins-good-0.10.11-libv4l2.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -29,6 +27,7 @@ BuildRequires: libvorbis-devel >= 1.0-4mdk
 BuildRequires: libtheora-devel
 BuildRequires: libshout-devel
 BuildRequires: libv4l-devel
+BuildRequires: libbzip2-devel
 BuildRequires: gettext-devel
 BuildRequires: taglib-devel
 BuildRequires: hal-devel >= 0.5.6
@@ -64,7 +63,6 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch0 -p1 -b .utf8
 %patch1 -p0 -b .libv4l2
 ./autogen.sh
 
