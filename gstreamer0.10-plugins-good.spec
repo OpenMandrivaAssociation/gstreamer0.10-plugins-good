@@ -38,7 +38,7 @@ BuildRequires: hal-devel >= 0.5.6
 BuildRequires: nasm => 0.90
 %endif
 BuildRequires: valgrind libcheck-devel
-BuildRequires: libgstreamer-plugins-base-devel >= %{gst_require_version}
+BuildRequires: libgstreamer-plugins-base-devel >= %{gst_required_version}
 BuildRequires: gstreamer0.10-plugins-base
 BuildRequires: libmesaglu-devel
 BuildRequires: libGConf2-devel
