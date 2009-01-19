@@ -1,10 +1,11 @@
 %define version 0.10.11
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
+%define gst_required_version 0.10.21
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
@@ -15,6 +16,8 @@ Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
 # (hk) libv4l support, needed by gspcav2 on linux 2.6.27
 Patch1:		gst-plugins-good-0.10.11-libv4l2.patch
+# (fc) 0.10.11-3mdv pulseaudio fixes (gnome bugs #567746) (CVS)
+Patch2:		gst-plugins-good-0.10.11-pulsefixes.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -35,7 +38,7 @@ BuildRequires: hal-devel >= 0.5.6
 BuildRequires: nasm => 0.90
 %endif
 BuildRequires: valgrind libcheck-devel
-BuildRequires: libgstreamer-plugins-base-devel >= 0.10.9
+BuildRequires: libgstreamer-plugins-base-devel >= %{gst_require_version}
 BuildRequires: gstreamer0.10-plugins-base
 BuildRequires: libmesaglu-devel
 BuildRequires: libGConf2-devel
@@ -64,7 +67,10 @@ elements.
 %prep
 %setup -q -n gst-plugins-good-%{version}
 %patch1 -p0 -b .libv4l2
-./autogen.sh
+%patch2 -p1 -b .pulsefixes
+
+#needed by patch1
+NOCONFIGURE=1 ./autogen.sh
 
 %build
 %configure2_5x  \
