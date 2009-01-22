@@ -1,5 +1,5 @@
-%define version 0.10.11
-%define release %mkrel 3
+%define version 0.10.12
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -15,9 +15,7 @@ License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
 # (hk) libv4l support, needed by gspcav2 on linux 2.6.27
-Patch1:		gst-plugins-good-0.10.11-libv4l2.patch
-# (fc) 0.10.11-3mdv pulseaudio fixes (gnome bugs #567746) (CVS)
-Patch2:		gst-plugins-good-0.10.11-pulsefixes.patch
+Patch1:		gst-plugins-good-0.10.12-libv4l2.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -66,17 +64,24 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch1 -p0 -b .libv4l2
-%patch2 -p1 -b .pulsefixes
+%patch1 -p1 -b .libv4l2
 
 #needed by patch1
-NOCONFIGURE=1 ./autogen.sh
+#gw don't run libtoolize, we need libtool 2.2
+autopoint --force
+patch -p0 < common/gettext.patch
+aclocal -I m4 -I common/m4
+autoheader
+autoconf
+automake
+#NOCONFIGURE=1 ./autogen.sh
 
 %build
 %configure2_5x  \
   --with-package-name='Mandriva %name package' \
   --with-package-origin='http://www.mandriva.com/' \
   --disable-dependency-tracking   --enable-experimental
+%make
 
 %check
 cd tests/check
@@ -84,7 +89,7 @@ make check
 
 %install
 rm -rf %buildroot gst-plugins-base-%majorminor.lang
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std mkinstalldirs="mkdir -p"
 %find_lang gst-plugins-good-%majorminor
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
