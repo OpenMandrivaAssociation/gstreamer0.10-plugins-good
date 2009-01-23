@@ -1,4 +1,4 @@
-%define version 0.10.12
+%define version 0.10.13
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
@@ -69,7 +69,6 @@ elements.
 #needed by patch1
 #gw don't run libtoolize, we need libtool 2.2
 autopoint --force
-patch -p0 < common/gettext.patch
 aclocal -I m4 -I common/m4
 autoheader
 autoconf
@@ -89,7 +88,7 @@ make check
 
 %install
 rm -rf %buildroot gst-plugins-base-%majorminor.lang
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std mkinstalldirs="mkdir -p"
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 %find_lang gst-plugins-good-%majorminor
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
