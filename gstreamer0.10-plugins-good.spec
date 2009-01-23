@@ -34,6 +34,8 @@ BuildRequires: libbzip2-devel
 BuildRequires: gettext-devel
 BuildRequires: taglib-devel
 BuildRequires: hal-devel >= 0.5.6
+# libtool dep:
+BuildRequires: dbus-glib-devel
 %ifarch %ix86
 BuildRequires: nasm => 0.90
 %endif
