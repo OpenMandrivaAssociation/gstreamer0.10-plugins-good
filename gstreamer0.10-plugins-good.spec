@@ -91,7 +91,7 @@ make check
 
 %install
 rm -rf %buildroot gst-plugins-base-%majorminor.lang
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plugins-good
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plugins-good-%majorminor
 %find_lang gst-plugins-good-%majorminor
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
