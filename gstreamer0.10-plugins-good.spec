@@ -16,6 +16,8 @@ Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
 # (hk) libv4l support, needed by gspcav2 on linux 2.6.27
 Patch1:		gst-plugins-good-0.10.12-libv4l2.patch
+#gw update elements/videocrop check
+Patch2:		gst-plugins-good-c979a9cdc37bd9665f03fc1143c2ef8bb3dc1924.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -65,6 +67,7 @@ elements.
 %prep
 %setup -q -n gst-plugins-good-%{version}
 %patch1 -p1 -b .libv4l2
+%patch2 -p1
 
 #needed by patch1
 #gw don't run libtoolize, we need libtool 2.2
@@ -88,7 +91,7 @@ make check
 
 %install
 rm -rf %buildroot gst-plugins-base-%majorminor.lang
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plugins-good
 %find_lang gst-plugins-good-%majorminor
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
