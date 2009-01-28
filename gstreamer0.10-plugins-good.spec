@@ -1,5 +1,5 @@
 %define version 0.10.13
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -18,6 +18,8 @@ Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-
 Patch1:		gst-plugins-good-0.10.12-libv4l2.patch
 #gw update elements/videocrop check
 Patch2:		gst-plugins-good-c979a9cdc37bd9665f03fc1143c2ef8bb3dc1924.patch
+#gw fix memory leak in pulse sink
+Patch3: gst-plugins-good-b1c6dec543d6445151631ea13825820f2ad3914d.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -70,15 +72,9 @@ elements.
 %setup -q -n gst-plugins-good-%{version}
 %patch1 -p1 -b .libv4l2
 %patch2 -p1
+%patch3 -p1
 
-#needed by patch1
-#gw don't run libtoolize, we need libtool 2.2
-autopoint --force
-aclocal -I m4 -I common/m4
-autoheader
-autoconf
-automake
-#NOCONFIGURE=1 ./autogen.sh
+NOCONFIGURE=1 ./autogen.sh
 
 %build
 %configure2_5x  \
