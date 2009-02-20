@@ -1,5 +1,5 @@
-%define version 0.10.13
-%define release %mkrel 3
+%define version 0.10.14
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -14,20 +14,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-# (hk) libv4l support, needed by gspcav2 on linux 2.6.27
-Patch1:		gst-plugins-good-0.10.12-libv4l2.patch
-#gw update elements/videocrop check
-Patch2:		gst-plugins-good-c979a9cdc37bd9665f03fc1143c2ef8bb3dc1924.patch
-# (cg) Upgrade to master pulseaudio support
-Patch500: 0500-ext-pulse-pulsesink.c-Change-if-0-to-something-mor.patch
-Patch501: 0501-ext-pulse-pulsemixerctrl.c-Add-note-about-memleak.patch
-Patch502: 0502-ext-pulse-pulsemixerctrl.c-Don-t-leak-the-pa_operat.patch
-Patch503: 0503-ext-pulse-pulsemixerctrl.c-And-remove-temporary-com.patch
-Patch504: 0504-ext-pulse-pulsesink.c-Don-t-wait-for-the-pulse-main.patch
-Patch505: 0505-ext-pulse-pulsesink.-Use-a-mutex-to-protect-the-cu.patch
-Patch506: 0506-ext-pulse-pulseprobe.c-Fix-refcount-loop-resulting.patch
-Patch507: 0507-Rewrite-the-pulse-plugin-conditionally-enabling-new.patch
-Patch508: 0508-Fix-compile-error-in-the-last-commit.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -78,19 +64,6 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch1 -p1 -b .libv4l2
-%patch2 -p1
-%patch500 -p1
-%patch501 -p1
-%patch502 -p1
-%patch503 -p1
-%patch504 -p1
-%patch505 -p1
-%patch506 -p1
-%patch507 -p1
-%patch508 -p1
-
-NOCONFIGURE=1 ./autogen.sh
 
 %build
 %configure2_5x  \
@@ -185,6 +158,9 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstwavenc.so
 %_libdir/gstreamer-%majorminor/libgstwavparse.so
 %_libdir/gstreamer-%majorminor/libgstximagesrc.so
+%dir %_datadir/gstreamer-%majorminor/
+%dir %_datadir/gstreamer-%majorminor/presets
+%_datadir/gstreamer-%majorminor/presets/*
 
 %package -n %bname-soup
 Summary:  GStreamer HTTP plugin based on libsoup
