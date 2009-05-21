@@ -1,4 +1,4 @@
-%define version 0.10.14
+%define version 0.10.15
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
@@ -43,7 +43,7 @@ BuildRequires: libGConf2-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
 # some plugins moved from bad to good with release 0.10.7
-Conflicts: gstreamer0.10-plugins-bad < 0.10.8
+Conflicts: gstreamer0.10-plugins-bad < 0.10.12
 # gw this is the default http source:
 Suggests: %bname-soup
 
@@ -117,8 +117,10 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstcairo.so
 %_libdir/gstreamer-%majorminor/libgstcutter.so
 %_libdir/gstreamer-%majorminor/libgstdebug.so
+%_libdir/gstreamer-%majorminor/libgstdeinterlace.so
 %_libdir/gstreamer-%majorminor/libgstefence.so
 %_libdir/gstreamer-%majorminor/libgsteffectv.so
+%_libdir/gstreamer-%majorminor/libgstflv.so
 %_libdir/gstreamer-%majorminor/libgstequalizer.so
 %_libdir/gstreamer-%majorminor/libgstflxdec.so
 %_libdir/gstreamer-%majorminor/libgstgamma.so
@@ -158,6 +160,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstwavenc.so
 %_libdir/gstreamer-%majorminor/libgstwavparse.so
 %_libdir/gstreamer-%majorminor/libgstximagesrc.so
+%_libdir/gstreamer-%majorminor/libgsty4menc.so
 %dir %_datadir/gstreamer-%majorminor/
 %dir %_datadir/gstreamer-%majorminor/presets
 %_datadir/gstreamer-%majorminor/presets/*
