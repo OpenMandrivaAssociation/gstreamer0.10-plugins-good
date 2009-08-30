@@ -1,5 +1,5 @@
-%define version 0.10.15
-%define release %mkrel 3
+%define version 0.10.16
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -14,8 +14,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-# upstream patch, commit d9544bcc44adcef769cbdf7f6453e140058a3adc
-Patch0:		gstreamer-0.10-plugins-good-0.10.15-CVE-2009-1932.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -32,6 +30,7 @@ BuildRequires: libbzip2-devel
 BuildRequires: gettext-devel
 BuildRequires: taglib-devel
 BuildRequires: hal-devel >= 0.5.6
+BuildRequires: libgudev-devel
 # libtool dep:
 BuildRequires: dbus-glib-devel
 %ifarch %ix86
@@ -45,7 +44,7 @@ BuildRequires: libGConf2-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
 # some plugins moved from bad to good with release 0.10.7
-Conflicts: gstreamer0.10-plugins-bad < 0.10.12
+Conflicts: gstreamer0.10-plugins-bad < 0.10.14
 # gw this is the default http source:
 Suggests: %bname-soup
 
@@ -66,7 +65,6 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%patch0 -p1 -b .CVE-2009-1932
 
 %build
 %configure2_5x  \
@@ -148,6 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstqtdemux.so
 %_libdir/gstreamer-%majorminor/libgstreplaygain.so
 %_libdir/gstreamer-%majorminor/libgstrtp.so
+%_libdir/gstreamer-%majorminor/libgstrtpmanager.so
 %_libdir/gstreamer-%majorminor/libgstrtsp.so
 %_libdir/gstreamer-%majorminor/libgstshout2.so
 %_libdir/gstreamer-%majorminor/libgstsmpte.so
