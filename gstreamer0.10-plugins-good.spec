@@ -36,7 +36,10 @@ BuildRequires: dbus-glib-devel
 %ifarch %ix86
 BuildRequires: nasm => 0.90
 %endif
-BuildRequires: valgrind libcheck-devel
+%ifnarch %mips %arm
+BuildRequires: valgrind
+%endif
+BuildRequires: libcheck-devel
 BuildRequires: libgstreamer-plugins-base-devel >= %{gst_required_version}
 BuildRequires: gstreamer0.10-plugins-base
 BuildRequires: libmesaglu-devel
