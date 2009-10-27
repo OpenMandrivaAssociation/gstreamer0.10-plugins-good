@@ -17,6 +17,9 @@ Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-
 # (cg) Changes to the pulse plugins.
 #  NB: I have specifically excluded 42ee5e22 pulsesink: remove ringbuffer reset compensation
 #      as this seems to cause a number of seek related problems.
+#  NB2: This is caused by a specific hack in the base gst code that checks for pulsesink < 0.10.17
+#       so this commit will work fine when 0.10.17 is released officially.
+#       See: https://bugzilla.gnome.org/show_bug.cgi?id=599105
 Patch0100: 0100-pulse-small-cleanups.patch
 Patch0101: 0101-pulsesink-whitespace-fixes.patch
 Patch0102: 0102-pulsesink-Implement-mute-property.patch
