@@ -1,5 +1,5 @@
-%define version 0.10.16
-%define release %mkrel 3
+%define version 0.10.17
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -14,30 +14,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-# (cg) Changes to the pulse plugins.
-#  NB: I have specifically excluded 42ee5e22 pulsesink: remove ringbuffer reset compensation
-#      as this seems to cause a number of seek related problems.
-#  NB2: This is caused by a specific hack in the base gst code that checks for pulsesink < 0.10.17
-#       so this commit will work fine when 0.10.17 is released officially.
-#       See: https://bugzilla.gnome.org/show_bug.cgi?id=599105
-Patch0100: 0100-pulse-small-cleanups.patch
-Patch0101: 0101-pulsesink-whitespace-fixes.patch
-Patch0102: 0102-pulsesink-Implement-mute-property.patch
-Patch0103: 0103-pulsesink-Implement-GstStreamVolume-interface.patch
-Patch0104: 0104-pulsesink-handle-stream-events.patch
-Patch0105: 0105-pulsesink-Don-t-dereference-NULL-pointers.patch
-Patch0106: 0106-pulsesrc-Don-t-dereference-NULL-pointers.patch
-Patch0107: 0107-pulse-rename-pa_buffer_attr-variables.patch
-Patch0108: 0108-pulsesrc-guard-fragment-size-with-a-lower-limit-base.patch
-Patch0109: 0109-pulsesink-set-desired-minreq-value-to-segsize-latenc.patch
-Patch0110: 0110-pulse-make-a-few-things-smaller-by-making-them-bitfi.patch
-Patch0111: 0111-pulse-adjust-CHECK_DEAD_GOTO-macro-to-glib-style.patch
-Patch0112: 0112-pulse-mainloop-creation-can-fail-too-so-handle-that.patch
-Patch0113: 0113-pulse-loop-while-connecting-to-server.patch
-Patch0114: 0114-pulse-when-constructing-a-stream-title-from-tag-data.patch
-Patch0115: 0115-pulse-use-performer-as-a-fallback-for-artist-tag.patch
-Patch0116: 0116-pulsesink-Initialize-gettext-for-the-translated-stri.patch
-Patch0117: 0117-pulse-never-apply-volume-more-than-once.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -92,7 +68,6 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%apply_patches
 
 %build
 %configure2_5x  \
