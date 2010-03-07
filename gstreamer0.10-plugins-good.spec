@@ -46,8 +46,8 @@ BuildRequires: libmesaglu-devel
 BuildRequires: libGConf2-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
-# some plugins moved from bad to good with release 0.10.7
-Conflicts: gstreamer0.10-plugins-bad < 0.10.14
+# some plugins moved from bad to good with release 0.10.19
+Conflicts: gstreamer0.10-plugins-bad < 0.10.18
 # gw this is the default http source:
 Suggests: %bname-soup
 
