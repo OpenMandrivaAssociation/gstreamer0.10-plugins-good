@@ -1,11 +1,11 @@
-%define version 0.10.18
+%define version 0.10.19
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
-%define gst_required_version 0.10.26
+%define gst_required_version 0.10.26.3
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
@@ -155,6 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstrtp.so
 %_libdir/gstreamer-%majorminor/libgstrtpmanager.so
 %_libdir/gstreamer-%majorminor/libgstrtsp.so
+%_libdir/gstreamer-%majorminor/libgstshapewipe.so
 %_libdir/gstreamer-%majorminor/libgstshout2.so
 %_libdir/gstreamer-%majorminor/libgstsmpte.so
 %_libdir/gstreamer-%majorminor/libgstspectrum.so
