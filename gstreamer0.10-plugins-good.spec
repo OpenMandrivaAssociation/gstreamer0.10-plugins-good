@@ -1,11 +1,11 @@
-%define version 0.10.21
+%define version 0.10.22
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
-%define gst_required_version 0.10.26.3
+%define gst_required_version 0.10.29
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
