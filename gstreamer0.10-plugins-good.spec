@@ -1,4 +1,4 @@
-%define version 0.10.22
+%define version 0.10.23
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
@@ -44,10 +44,14 @@ BuildRequires: libgstreamer-plugins-base-devel >= %{gst_required_version}
 BuildRequires: gstreamer0.10-plugins-base
 BuildRequires: libmesaglu-devel
 BuildRequires: libGConf2-devel
+#gw else the tests fail: 
+#https://bugzilla.gnome.org/show_bug.cgi?id=619717
+BuildConflicts: %name < 0.10.23 
+BuildConflicts: %bname-plugins-bad < 0.10.19
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
-# some plugins moved from bad to good with release 0.10.19
-Conflicts: gstreamer0.10-plugins-bad < 0.10.18
+# some plugins moved from bad to good with release 0.10.23
+Conflicts: gstreamer0.10-plugins-bad < 0.10.19
 # gw this is the default http source:
 Suggests: %bname-soup
 
@@ -131,7 +135,6 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstflv.so
 %_libdir/gstreamer-%majorminor/libgstequalizer.so
 %_libdir/gstreamer-%majorminor/libgstflxdec.so
-%_libdir/gstreamer-%majorminor/libgstgamma.so
 %_libdir/gstreamer-%majorminor/libgstgconfelements.so
 %_libdir/gstreamer-%majorminor/libgstgdkpixbuf.so
 %_libdir/gstreamer-%majorminor/libgstgoom.so
@@ -139,6 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgsthalelements.so
 %_libdir/gstreamer-%majorminor/libgsticydemux.so
 %_libdir/gstreamer-%majorminor/libgstid3demux.so
+%_libdir/gstreamer-%majorminor/libgstimagefreeze.so
 %_libdir/gstreamer-%majorminor/libgstinterleave.so
 %_libdir/gstreamer-%majorminor/libgstjpeg.so
 %_libdir/gstreamer-%majorminor/libgstlevel.so
@@ -149,6 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstmultipart.so
 %_libdir/gstreamer-%majorminor/libgstnavigationtest.so
 %_libdir/gstreamer-%majorminor/libgstossaudio.so
+%_libdir/gstreamer-%majorminor/libgstoss4audio.so
 %_libdir/gstreamer-%majorminor/libgstpng.so
 %_libdir/gstreamer-%majorminor/libgstqtdemux.so
 %_libdir/gstreamer-%majorminor/libgstreplaygain.so
@@ -162,10 +167,9 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgsttaglib.so
 %_libdir/gstreamer-%majorminor/libgstudp.so
 %_libdir/gstreamer-%majorminor/libgstvideo4linux2.so
-%_libdir/gstreamer-%majorminor/libgstvideobalance.so
 %_libdir/gstreamer-%majorminor/libgstvideobox.so
 %_libdir/gstreamer-%majorminor/libgstvideocrop.so
-%_libdir/gstreamer-%majorminor/libgstvideoflip.so
+%_libdir/gstreamer-%majorminor/libgstvideofilter.so
 %_libdir/gstreamer-%majorminor/libgstvideomixer.so
 %_libdir/gstreamer-%majorminor/libgstwavenc.so
 %_libdir/gstreamer-%majorminor/libgstwavparse.so
