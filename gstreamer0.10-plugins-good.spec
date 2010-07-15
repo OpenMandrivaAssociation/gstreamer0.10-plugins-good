@@ -1,11 +1,11 @@
-%define version 0.10.23
+%define version 0.10.24
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
-%define gst_required_version 0.10.29
+%define gst_required_version 0.10.30
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
@@ -21,7 +21,7 @@ BuildRequires:  gtk+2-devel
 BuildRequires:  glib2-devel >= %_glib2 
 BuildRequires: libpng-devel >= 1.2.4-4mdk
 BuildRequires: libjpeg-devel
-BuildRequires: liboil-devel >= 0.3.2
+BuildRequires: liborc-devel >= 0.4.5
 BuildRequires: libvorbis-devel >= 1.0-4mdk
 BuildRequires: libtheora-devel
 BuildRequires: libshout-devel
