@@ -1,5 +1,5 @@
 %define version 0.10.24
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -14,6 +14,7 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
+Patch0:		0001-pulsesink-use-G_TYPE_DEFINE-to-define-ring-buffer-ty.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -72,6 +73,7 @@ elements.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
+%apply_patches
 
 %build
 %configure2_5x  \
