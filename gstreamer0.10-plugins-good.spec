@@ -1,5 +1,5 @@
-%define version 0.10.24
-%define release %mkrel 5
+%define version 0.10.25
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -14,7 +14,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-Patch1:		0001-pulsesink-use-G_TYPE_DEFINE-to-define-ring-buffer-ty.patch
 # (cg) Comment out for now... it seems to unstable.
 #Patch2:		0002-pulsesink-share-the-PA-context-between-all-clients-w.patch
 URL:            http://gstreamer.freedesktop.org/
