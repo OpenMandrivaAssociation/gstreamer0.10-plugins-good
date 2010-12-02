@@ -1,11 +1,11 @@
-%define version 0.10.25
-%define release %mkrel 4
+%define version 0.10.26
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
-%define gst_required_version 0.10.30
+%define gst_required_version 0.10.31
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
@@ -16,7 +16,6 @@ Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
 # (cg) Comment out for now... it seems to unstable.
 #Patch2:		0002-pulsesink-share-the-PA-context-between-all-clients-w.patch
-Patch3:		0003-alphacolor-making-passthrough-work.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
