@@ -1,5 +1,5 @@
 %define version 0.10.26
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -14,8 +14,7 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-# (cg) Comment out for now... it seems to unstable.
-#Patch2:		0002-pulsesink-share-the-PA-context-between-all-clients-w.patch
+Patch1:		0001-pulsesink-don-t-uncork-in-_start.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
