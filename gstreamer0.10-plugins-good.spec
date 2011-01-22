@@ -1,11 +1,11 @@
-%define version 0.10.26
-%define release %mkrel 3
+%define version 0.10.27
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
-%define gst_required_version 0.10.31
+%define gst_required_version 0.10.32
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
@@ -14,7 +14,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
-Patch1:		0001-pulsesink-don-t-uncork-in-_start.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -180,6 +179,20 @@ rm -rf $RPM_BUILD_ROOT
 %dir %_datadir/gstreamer-%majorminor/
 %dir %_datadir/gstreamer-%majorminor/presets
 %_datadir/gstreamer-%majorminor/presets/*
+
+%package -n %bname-jack
+Summary:  GStreamer plug-in for the Jack Sound Server
+Group:    Sound
+BuildRequires: libjack-devel => 0.28.0
+Provides:	%bname-audiosrc
+Provides:	%bname-audiosink
+
+%description -n %bname-jack
+Plug-in for the JACK professional sound server.
+
+%files -n %bname-jack
+%defattr(-, root, root)
+%{_libdir}/gstreamer-%{majorminor}/libgstjack.so
 
 %package -n %bname-soup
 Summary:  GStreamer HTTP plugin based on libsoup
