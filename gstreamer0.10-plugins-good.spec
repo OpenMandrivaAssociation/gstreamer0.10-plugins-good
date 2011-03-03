@@ -1,5 +1,5 @@
 %define version 0.10.27
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -29,7 +29,7 @@ BuildRequires: libv4l-devel
 BuildRequires: libbzip2-devel
 BuildRequires: gettext-devel
 BuildRequires: taglib-devel
-BuildRequires: hal-devel >= 0.5.6
+#BuildRequires: hal-devel >= 0.5.6
 BuildRequires: libgudev-devel
 # libtool dep:
 BuildRequires: dbus-glib-devel
@@ -140,7 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstgdkpixbuf.so
 %_libdir/gstreamer-%majorminor/libgstgoom.so
 %_libdir/gstreamer-%majorminor/libgstgoom2k1.so
-%_libdir/gstreamer-%majorminor/libgsthalelements.so
+#_libdir/gstreamer-%majorminor/libgsthalelements.so
 %_libdir/gstreamer-%majorminor/libgsticydemux.so
 %_libdir/gstreamer-%majorminor/libgstid3demux.so
 %_libdir/gstreamer-%majorminor/libgstimagefreeze.so
