@@ -29,7 +29,6 @@ BuildRequires: libv4l-devel
 BuildRequires: libbzip2-devel
 BuildRequires: gettext-devel
 BuildRequires: taglib-devel
-#BuildRequires: hal-devel >= 0.5.6
 BuildRequires: libgudev-devel
 # libtool dep:
 BuildRequires: dbus-glib-devel
@@ -78,7 +77,7 @@ elements.
 %configure2_5x  \
   --with-package-name='Mandriva %name package' \
   --with-package-origin='http://www.mandriva.com/' \
-  --disable-dependency-tracking   --enable-experimental
+  --disable-dependency-tracking   --enable-experimental --disable-hal
 %make
 
 # FIXME: Some tests on mips are currently failing with timeouts
@@ -140,7 +139,6 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstgdkpixbuf.so
 %_libdir/gstreamer-%majorminor/libgstgoom.so
 %_libdir/gstreamer-%majorminor/libgstgoom2k1.so
-#_libdir/gstreamer-%majorminor/libgsthalelements.so
 %_libdir/gstreamer-%majorminor/libgsticydemux.so
 %_libdir/gstreamer-%majorminor/libgstid3demux.so
 %_libdir/gstreamer-%majorminor/libgstimagefreeze.so
