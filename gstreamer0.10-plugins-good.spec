@@ -123,6 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstalphacolor.so
 %_libdir/gstreamer-%majorminor/libgstapetag.so
 %_libdir/gstreamer-%majorminor/libgstaudiofx.so
+%_libdir/gstreamer-%majorminor/libgstaudioparsers.so
 %_libdir/gstreamer-%majorminor/libgstauparse.so
 %_libdir/gstreamer-%majorminor/libgstautodetect.so
 %_libdir/gstreamer-%majorminor/libgstavi.so
@@ -143,6 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstid3demux.so
 %_libdir/gstreamer-%majorminor/libgstimagefreeze.so
 %_libdir/gstreamer-%majorminor/libgstinterleave.so
+%_libdir/gstreamer-%majorminor/libgstisomp4.so
 %_libdir/gstreamer-%majorminor/libgstjpeg.so
 %_libdir/gstreamer-%majorminor/libgstlevel.so
 %_libdir/gstreamer-%majorminor/libgstmatroska.so
