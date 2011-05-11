@@ -42,7 +42,7 @@ BuildRequires: libcheck-devel
 BuildRequires: libgstreamer-plugins-base-devel >= %{gst_required_version}
 BuildRequires: gstreamer0.10-plugins-base
 BuildRequires: libmesaglu-devel
-BuildRequires: libGConf2-devel
+BuildRequires: libGConf2-devel GConf2
 #gw else the tests fail: 
 #https://bugzilla.gnome.org/show_bug.cgi?id=619717
 BuildConflicts: %name < 0.10.23 
