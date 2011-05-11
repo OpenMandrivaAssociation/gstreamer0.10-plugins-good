@@ -154,7 +154,6 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstossaudio.so
 %_libdir/gstreamer-%majorminor/libgstoss4audio.so
 %_libdir/gstreamer-%majorminor/libgstpng.so
-%_libdir/gstreamer-%majorminor/libgstqtdemux.so
 %_libdir/gstreamer-%majorminor/libgstreplaygain.so
 %_libdir/gstreamer-%majorminor/libgstrtp.so
 %_libdir/gstreamer-%majorminor/libgstrtpmanager.so
