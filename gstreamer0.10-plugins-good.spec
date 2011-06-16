@@ -1,4 +1,4 @@
-%define version 0.10.29
+%define version 0.10.30
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
@@ -13,7 +13,7 @@ Version: 	%version
 Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
-Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-%{version}.tar.bz2
+Source: 	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/gst-plugins-good-%{version}.tar.xz
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
