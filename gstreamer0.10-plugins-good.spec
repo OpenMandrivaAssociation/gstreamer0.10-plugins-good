@@ -1,5 +1,5 @@
 %define version 0.10.30
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -211,7 +211,6 @@ Summary: Pulseaudio plugin for GStreamer
 Group: Sound
 Requires:      %bname-plugins >= %{version}
 BuildRequires: libpulseaudio-devel >= 0.9.7
-Requires: pulseaudio >= 0.9.7
 
 %description -n %bname-pulse
 This is a GStreamer audio output plugin using the Pulseaudio sound server.
