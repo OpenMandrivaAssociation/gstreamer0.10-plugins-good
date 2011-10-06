@@ -287,25 +287,6 @@ Plug-in for the free FLAC lossless audio format.
 %defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstflac.so
 
-### ESD ###
-%package -n %bname-esound
-Summary: Gstreamer plugin for ESD sound output
-Group: Sound
-Obsoletes:     %bname-esd
-Provides:      %bname-esd
-Requires: esound >= 0.2.8
-BuildRequires: libesound-devel >= 0.2.8
-Requires: %bname-plugins >= %{version}-%release
-Provides:	%bname-audiosrc
-Provides:	%bname-audiosink
-
-%description -n %bname-esound
-Output plugin for GStreamer for use with the esound package
-
-%files -n %bname-esound
-%defattr(-, root, root)
-%{_libdir}/gstreamer-%{majorminor}/libgstesd.so
-
 ### AALIB ###
 %package -n %bname-aalib
 Summary: Gstreamer plugin for Ascii-art output
