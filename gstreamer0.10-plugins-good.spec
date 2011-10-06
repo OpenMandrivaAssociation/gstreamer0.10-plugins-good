@@ -1,3 +1,5 @@
+%define enable_check	0
+
 %define version 0.10.30
 %define release %mkrel 3
 %define         _glib2          2.2
@@ -15,7 +17,8 @@ License: 	LGPLv2+
 Group: 		Sound
 Source: 	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/gst-plugins-good-%{version}.tar.xz
 URL:            http://gstreamer.freedesktop.org/
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
+# (cg) Upstream fix to help prevent unnecessary alsa rewinds being triggered in PA.
+Patch0:		0001-pulsesink-Allow-writes-in-bigger-chunks.patch
 #gw for the pixbuf plugin
 BuildRequires:  gtk+2-devel
 BuildRequires:  glib2-devel >= %_glib2 
@@ -53,6 +56,7 @@ Provides:	%bname-audiosink
 Conflicts: gstreamer0.10-plugins-bad < 0.10.19
 # gw this is the default http source:
 Suggests: %bname-soup
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -75,17 +79,23 @@ elements.
 
 %build
 %configure2_5x  \
-  --with-package-name='Mandriva %name package' \
-  --with-package-origin='http://www.mandriva.com/' \
-  --disable-dependency-tracking   --enable-experimental --disable-hal
+    --with-package-name='Mandriva %name package' \
+    --with-package-origin='http://www.mandriva.com/' \
+    --disable-dependency-tracking \
+    --enable-experimental \
+    --disable-hal \
+    --disable-esd
+
 %make
 
+%if %{enable_check}
 # FIXME: Some tests on mips are currently failing with timeouts
 # so disable them.
 %ifnarch %mips
 %check
 cd tests/check
 make check
+%endif
 %endif
 
 %install
