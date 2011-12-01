@@ -104,16 +104,16 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plu
 %find_lang gst-plugins-good-%majorminor
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
+rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
+rm -f %{buildroot}%{_libdir}/*.a
+rm -f %{buildroot}%{_libdir}/*.la
 
 #blino remove development doc since we don't ship devel files
-rm -rf $RPM_BUILD_ROOT%{_docdir}/docs/plugins/html
+rm -rf %{buildroot}%{_docdir}/docs/plugins/html
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %define schemas gstreamer-0.10
 
