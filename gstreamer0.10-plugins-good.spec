@@ -1,13 +1,13 @@
 %define enable_check	0
 
-%define version 0.10.30
-%define release %mkrel 3
+%define version 0.10.31
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
 %define bname gstreamer0.10
 %define name %bname-plugins-good
-%define gst_required_version 0.10.33
+%define gst_required_version 0.10.36
 
 Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
@@ -17,8 +17,6 @@ License: 	LGPLv2+
 Group: 		Sound
 Source: 	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/gst-plugins-good-%{version}.tar.xz
 URL:            http://gstreamer.freedesktop.org/
-# (cg) Upstream fix to help prevent unnecessary alsa rewinds being triggered in PA.
-Patch0:		0001-pulsesink-Allow-writes-in-bigger-chunks.patch
 #gw for the pixbuf plugin
 BuildRequires:  gtk+2-devel
 BuildRequires:  glib2-devel >= %_glib2 
@@ -192,7 +190,7 @@ rm -rf %{buildroot}
 %package -n %bname-jack
 Summary:  GStreamer plug-in for the Jack Sound Server
 Group:    Sound
-BuildRequires: libjack-devel => 0.28.0
+BuildRequires: jackit-devel => 0.28.0
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
 
