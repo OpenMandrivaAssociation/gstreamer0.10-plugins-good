@@ -1,7 +1,9 @@
 %define enable_check	0
 
-%define version 0.10.31
-%define release %mkrel 1
+
+%define Werror_cflags %nil
+%define version 0.10.6
+%define release 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -15,7 +17,7 @@ Version: 	%version
 Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
-Source: 	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/gst-plugins-good-%{version}.tar.xz
+Source0: 	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/0.10/gst-plugins-good-%{version}.tar.bz2
 URL:            http://gstreamer.freedesktop.org/
 #gw for the pixbuf plugin
 BuildRequires:  gtk+2-devel
@@ -30,7 +32,8 @@ BuildRequires: libv4l-devel
 BuildRequires: libbzip2-devel
 BuildRequires: gettext-devel
 BuildRequires: taglib-devel
-BuildRequires: libgudev-devel
+BuildRequires: pkgconfig(gudev-1.0)
+BuildRequires: pkgconfig(liboil-0.3)
 # libtool dep:
 BuildRequires: dbus-glib-devel
 %ifarch %ix86
@@ -54,7 +57,6 @@ Provides:	%bname-audiosink
 Conflicts: gstreamer0.10-plugins-bad < 0.10.19
 # gw this is the default http source:
 Suggests: %bname-soup
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -109,9 +111,6 @@ rm -f %{buildroot}%{_libdir}/*.la
 
 #blino remove development doc since we don't ship devel files
 rm -rf %{buildroot}%{_docdir}/docs/plugins/html
-
-%clean
-rm -rf %{buildroot}
 
 %define schemas gstreamer-0.10
 
@@ -198,7 +197,6 @@ Provides:	%bname-audiosink
 Plug-in for the JACK professional sound server.
 
 %files -n %bname-jack
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstjack.so
 
 %package -n %bname-soup
@@ -211,20 +209,18 @@ BuildRequires: libsoup-devel >= 2.3
 Plug-in for HTTP access based on libsoup.
 
 %files -n %bname-soup
-%defattr(-, root, root)
 %_libdir/gstreamer-%majorminor/libgstsouphttpsrc.so
 
 %package -n %bname-pulse
 Summary: Pulseaudio plugin for GStreamer
 Group: Sound
 Requires:      %bname-plugins >= %{version}
-BuildRequires: libpulseaudio-devel >= 0.9.7
+BuildRequires: pulseaudio-devel >= 0.9.7
 
 %description -n %bname-pulse
 This is a GStreamer audio output plugin using the Pulseaudio sound server.
 
 %files -n %bname-pulse
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstpulse.so
 
 
@@ -239,7 +235,6 @@ BuildRequires: libdv-devel >= 0.98
 Plug-in for digital video support using libdv.
 
 %files -n %bname-dv
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstdv.so
 
 %package -n %bname-speex
@@ -252,7 +247,6 @@ BuildRequires: libspeex-devel
 Plug-Ins for creating and playing Ogg Speex audio files.
 
 %files -n %bname-speex  
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstspeex.so
 
 ### RAW1394 ###
@@ -268,7 +262,6 @@ BuildRequires: libiec61883-devel
 Plug-in for digital video support using raw1394.
 
 %files -n %bname-raw1394
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgst1394.so
 
 ### FLAC ###
@@ -282,7 +275,6 @@ BuildRequires: libflac-devel >= 1.0.4
 Plug-in for the free FLAC lossless audio format.
 
 %files -n %bname-flac
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstflac.so
 
 ### AALIB ###
@@ -296,7 +288,6 @@ Requires: %bname-plugins >= %{version}-%release
 Plugin for viewing movies in Ascii-art using aalib library.
 
 %files -n %bname-aalib
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstaasink.so
 
 %package -n %bname-caca
@@ -309,7 +300,6 @@ Requires: %bname-plugins >= %{version}-%release
 Plugin for viewing movies in Ascii-art using caca library.
 
 %files -n %bname-caca
-%defattr(-, root, root)
 %_libdir/gstreamer-%majorminor/libgstcacasink.so
 
 
@@ -323,6 +313,5 @@ BuildRequires: libwavpack-devel
 Plug-Ins for creating and playing WavPack audio files.
 
 %files -n %bname-wavpack
-%defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 
