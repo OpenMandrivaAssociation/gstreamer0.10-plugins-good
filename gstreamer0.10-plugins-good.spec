@@ -6,11 +6,13 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-good
 Version:	0.10.31
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		Sound
-Source:		ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/0.10/gst-plugins-good-%{version}.tar.xz
 URL:		http://gstreamer.freedesktop.org/
+Source:		ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/0.10/gst-plugins-good-%{version}.tar.xz
+# See https://bugzilla.gnome.org/show_bug.cgi?id=681491
+Patch0:		gst-plugins-good-0.10.31-linux3.6.patch
 #gw for the pixbuf plugin
 BuildRequires:	pkgconfig(gdk-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
@@ -211,7 +213,7 @@ Plug-Ins for creating and playing WavPack audio files.
 
 %prep
 %setup -q -n gst-plugins-good-%{version}
-%apply_patches
+%patch0 -p1
 
 %build
 %configure2_5x  \
@@ -221,21 +223,16 @@ Plug-Ins for creating and playing WavPack audio files.
 %make
 
 %install
-%__rm -rf %{buildroot} gst-plugins-base-%{majorminor}.lang
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plugins-good-%{majorminor}
 %find_lang gst-plugins-good-%{majorminor}
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
-%__rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
-%__rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
-%__rm -f %{buildroot}%{_libdir}/*.a
-%__rm -f %{buildroot}%{_libdir}/*.la
+rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
+rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
+rm -f %{buildroot}%{_libdir}/*.a
 
 #blino remove development doc since we don't ship devel files
-%__rm -rf %{buildroot}%{_docdir}/docs/plugins/html
-
-%clean
-%__rm -rf %{buildroot}
+rm -rf %{buildroot}%{_docdir}/docs/plugins/html
 
 %define schemas gstreamer-0.10
 
