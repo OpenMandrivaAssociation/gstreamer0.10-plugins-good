@@ -6,11 +6,11 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-good
 Version:	0.10.31
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
-Source:		ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/0.10/gst-plugins-good-%{version}.tar.xz
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/0.10/gst-plugins-good-%{version}.tar.xz
 # See https://bugzilla.gnome.org/show_bug.cgi?id=681491
 Patch0:		gst-plugins-good-0.10.31-linux3.6.patch
 #gw for the pixbuf plugin
@@ -237,9 +237,11 @@ rm -rf %{buildroot}%{_docdir}/docs/plugins/html
 %define schemas gstreamer-0.10
 
 %post
+
 %post_install_gconf_schemas %{schemas}
 
 %preun
+
 %preun_uninstall_gconf_schemas %{schemas}
 
 %files -f gst-plugins-good-%{majorminor}.lang
