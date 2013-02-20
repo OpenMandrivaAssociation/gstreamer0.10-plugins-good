@@ -236,13 +236,11 @@ rm -rf %{buildroot}%{_docdir}/docs/plugins/html
 
 %define schemas gstreamer-0.10
 
-%post
+#post
+#post_install_gconf_schemas %{schemas}
 
-%post_install_gconf_schemas %{schemas}
-
-%preun
-
-%preun_uninstall_gconf_schemas %{schemas}
+#preun
+#preun_uninstall_gconf_schemas %{schemas}
 
 %files -f gst-plugins-good-%{majorminor}.lang
 %doc AUTHORS COPYING README NEWS
