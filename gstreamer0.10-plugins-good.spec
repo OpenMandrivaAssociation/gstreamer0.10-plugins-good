@@ -6,7 +6,7 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-good
 Version:	0.10.31
-Release:	4
+Release:	5
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
@@ -217,8 +217,8 @@ Plug-Ins for creating and playing WavPack audio files.
 
 %build
 %configure2_5x  \
-  --with-package-name='ROSA %{name} package' \
-  --with-package-origin='http://rosalinux.com' \
+  --with-package-name='%{distribution} %{name} package' \
+  --with-package-origin='%{disturl}' \
   --disable-dependency-tracking   --enable-experimental --disable-hal
 %make
 
