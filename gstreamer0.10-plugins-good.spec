@@ -6,7 +6,7 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-good
 Version:	0.10.31
-Release:	5
+Release:	6
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
@@ -210,7 +210,6 @@ Plug-Ins for creating and playing WavPack audio files.
 %files -n %{bname}-wavpack
 %{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
 
-
 %prep
 %setup -q -n gst-plugins-good-%{version}
 %patch0 -p1
@@ -227,20 +226,12 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plu
 %find_lang gst-plugins-good-%{majorminor}
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
-rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
-rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
-rm -f %{buildroot}%{_libdir}/*.a
+rm %{buildroot}%{_libdir}/*.a
 
 #blino remove development doc since we don't ship devel files
-rm -rf %{buildroot}%{_docdir}/docs/plugins/html
+rm -r %{buildroot}%{_docdir}/docs/plugins/html
 
 %define schemas gstreamer-0.10
-
-#post
-#post_install_gconf_schemas %{schemas}
-
-#preun
-#preun_uninstall_gconf_schemas %{schemas}
 
 %files -f gst-plugins-good-%{majorminor}.lang
 %doc AUTHORS COPYING README NEWS
