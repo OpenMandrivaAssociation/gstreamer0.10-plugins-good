@@ -224,12 +224,6 @@ Plug-Ins for creating and playing WavPack audio files.
 %install
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std GETTEXT_PACKAGE=gst-plugins-good-%{majorminor}
 %find_lang gst-plugins-good-%{majorminor}
-# Clean out files that should not be part of the rpm.
-# This is the recommended way of dealing with it for RH8
-rm %{buildroot}%{_libdir}/*.a
-
-#blino remove development doc since we don't ship devel files
-rm -r %{buildroot}%{_docdir}/docs/plugins/html
 
 %define schemas gstreamer-0.10
 
