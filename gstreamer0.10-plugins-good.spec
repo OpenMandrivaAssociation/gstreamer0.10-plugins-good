@@ -1,11 +1,12 @@
 %define oname	gst-plugins-good
 %define api	0.10
 %define bname	gstreamer%{api}
+%bcond_with esd
 
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-good
 Version:	0.10.31
-Release:	6
+Release:	7
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
@@ -150,6 +151,7 @@ Plug-in for the free FLAC lossless audio format.
 %files -n %{bname}-flac
 %{_libdir}/gstreamer-%{api}/libgstflac.so
 
+%if %{with esd}
 ### ESD ###
 %package -n %{bname}-esound
 Summary:	Gstreamer plugin for ESD sound output
@@ -167,6 +169,7 @@ Output plugin for GStreamer for use with the esound package
 
 %files -n %{bname}-esound
 %{_libdir}/gstreamer-%{api}/libgstesd.so
+%endif
 
 ### AALIB ###
 %package -n %{bname}-aalib
