@@ -13,6 +13,8 @@ URL:		http://gstreamer.freedesktop.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/%{api}/%{oname}-%{version}.tar.xz
 # See https://bugzilla.gnome.org/show_bug.cgi?id=681491
 Patch0:		gst-plugins-good-0.10.31-linux3.6.patch
+# See https://bugs.gentoo.org/show_bug.cgi?id=468618
+Patch1:		gst-plugins-v4l2-0.10.31-linux-headers-3.9.patch
 
 BuildRequires:	GConf2
 BuildRequires:	gstreamer%{api}-plugins-base
