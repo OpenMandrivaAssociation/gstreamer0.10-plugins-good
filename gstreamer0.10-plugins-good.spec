@@ -215,7 +215,9 @@ Plug-Ins for creating and playing WavPack audio files.
 %apply_patches
 
 %build
-%configure2_5x  \
+export CC=gcc
+export CXX=g++
+%configure  \
 	--with-package-name='%{distribution} %{name} package' \
 	--with-package-origin='%{disturl}' \
 	--disable-dependency-tracking \
