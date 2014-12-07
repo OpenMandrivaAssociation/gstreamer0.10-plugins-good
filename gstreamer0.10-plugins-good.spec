@@ -6,7 +6,7 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-good
 Version:	0.10.31
-Release:	13
+Release:	14
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
