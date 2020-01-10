@@ -212,7 +212,7 @@ Plug-Ins for creating and playing WavPack audio files.
 
 %prep
 %setup -qn %{oname}-%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 export CC=gcc
