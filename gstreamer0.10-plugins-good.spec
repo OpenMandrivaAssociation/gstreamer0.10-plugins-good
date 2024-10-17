@@ -9,7 +9,7 @@ Version:	0.10.31
 Release:	16
 License:	LGPLv2+
 Group:		Sound
-URL:		http://gstreamer.freedesktop.org/
+URL:		https://gstreamer.freedesktop.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gst-plugins-good/%{api}/%{oname}-%{version}.tar.xz
 # See https://bugzilla.gnome.org/show_bug.cgi?id=681491
 Patch0:		gst-plugins-good-0.10.31-linux3.6.patch
